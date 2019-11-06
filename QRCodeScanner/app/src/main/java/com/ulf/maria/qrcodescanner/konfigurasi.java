@@ -9,7 +9,7 @@ public class konfigurasi {
     //Pada tutorial Kali ini, karena kita membuat localhost maka alamatnya tertuju ke IP komputer
     //dimana File PHP tersebut berada
     //PENTING! JANGAN LUPA GANTI IP SESUAI DENGAN IP KOMPUTER DIMANA DATA PHP BERADA
-    //ini adalah tujuan request 
+    //ini adalah tujuan request
     public static final String URL_ADD="http://192.168.137.1/webqrcodescan/android/tambah.php";
     public static final String URL_GET_ALL = "http://192.168.137.1/webqrcodescan/android/tampilSemua.php";
     public static final String URL_GET_EMP = "http://192.168.137.1/webqrcodescan/android/tampilPgw.php?id=";
@@ -17,6 +17,7 @@ public class konfigurasi {
     public static final String URL_DELETE_EMP = "http://192.168.137.1/webqrcodescan/android/hapusPgw.php?id=";
 
     //Dibawah ini merupakan Kunci yang akan digunakan untuk mengirim permintaan ke Skrip PHP
+    //ini adalah nama kolom yang harus disesuaikan dengan database
     public static final String KEY_EMP_ID = "id";
     public static final String KEY_EMP_NOMOR = "nomor";
     public static final String KEY_EMP_NAMA = "nama";
