@@ -12,10 +12,11 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp" tools:context=".MainActivity">
 
+    //Merubah hardcode dengan membuat string.xml
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nomor Barang" />
+        android:text="@string/nomor_barang" />
 
     <TextView
         android:layout_width="wrap_content"

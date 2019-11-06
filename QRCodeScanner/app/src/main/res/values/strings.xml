@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QRCodeScanner</string>
+    <string name="nomor_barang">Nomor Barang</string>
 </resources>
+//ini adalah lokasi tempat disimpan string
