@@ -9,6 +9,7 @@ public class konfigurasi {
     //Pada tutorial Kali ini, karena kita membuat localhost maka alamatnya tertuju ke IP komputer
     //dimana File PHP tersebut berada
     //PENTING! JANGAN LUPA GANTI IP SESUAI DENGAN IP KOMPUTER DIMANA DATA PHP BERADA
+    //ini adalah tujuan request 
     public static final String URL_ADD="http://192.168.137.1/webqrcodescan/android/tambah.php";
     public static final String URL_GET_ALL = "http://192.168.137.1/webqrcodescan/android/tampilSemua.php";
     public static final String URL_GET_EMP = "http://192.168.137.1/webqrcodescan/android/tampilPgw.php?id=";
