@@ -10,7 +10,7 @@ public class konfigurasi {
     //dimana File PHP tersebut berada
     //PENTING! JANGAN LUPA GANTI IP SESUAI DENGAN IP KOMPUTER DIMANA DATA PHP BERADA
     //ini adalah tujuan request
-    public static final String URL_ADD="http://192.168.137.1/webqrcodescan/android/tambah.php";
+    private static final String URL_ADD="http://192.168.137.1/webqrcodescan/android/tambah.php";
     public static final String URL_GET_ALL = "http://192.168.137.1/webqrcodescan/android/tampilSemua.php";
     public static final String URL_GET_EMP = "http://192.168.137.1/webqrcodescan/android/tampilPgw.php?id=";
     public static final String URL_UPDATE_EMP = "http://192.168.137.1/webqrcodescan/android/updatePgw.php";
