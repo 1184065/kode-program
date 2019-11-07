@@ -10,11 +10,11 @@ public class konfigurasi {
     //dimana File PHP tersebut berada
     //PENTING! JANGAN LUPA GANTI IP SESUAI DENGAN IP KOMPUTER DIMANA DATA PHP BERADA
     //ini adalah tujuan request
-    private static final String URL_ADD="http://192.168.137.1/webqrcodescan/android/tambah.php";
-    public static final String URL_GET_ALL = "http://192.168.137.1/webqrcodescan/android/tampilSemua.php";
-    public static final String URL_GET_EMP = "http://192.168.137.1/webqrcodescan/android/tampilPgw.php?id=";
-    public static final String URL_UPDATE_EMP = "http://192.168.137.1/webqrcodescan/android/updatePgw.php";
-    public static final String URL_DELETE_EMP = "http://192.168.137.1/webqrcodescan/android/hapusPgw.php?id=";
+    public static final String URL_ADD="https://nabilajkt48lovers.000webhostapp.com/webqrcodescan/android/tambah.php";
+    public static final String URL_GET_ALL = "https://nabilajkt48lovers.000webhostapp.com/webqrcodescan/android/tampilSemua.php";
+    public static final String URL_GET_EMP = "https://nabilajkt48lovers.000webhostapp.com/webqrcodescan/android/tampilPgw.php?id=";
+    public static final String URL_UPDATE_EMP = "https://nabilajkt48lovers.000webhostapp.com/webqrcodescan/android/updatePgw.php";
+    public static final String URL_DELETE_EMP = "https://nabilajkt48lovers.000webhostapp.com/webqrcodescan/android/hapusPgw.php?id=";
 
     //Dibawah ini merupakan Kunci yang akan digunakan untuk mengirim permintaan ke Skrip PHP
     //ini adalah nama kolom yang harus disesuaikan dengan database
