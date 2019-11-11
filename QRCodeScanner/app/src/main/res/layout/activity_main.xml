@@ -13,6 +13,7 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp" tools:context=".MainActivity">
 
+    //test push menambahkan konten
     //Merubah hardcode dengan membuat string.xml
     <TextView
         android:layout_width="wrap_content"
