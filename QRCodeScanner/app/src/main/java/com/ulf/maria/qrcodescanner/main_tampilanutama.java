@@ -52,7 +52,8 @@ public class main_tampilanutama extends AppCompatActivity implements View.OnClic
         }
 
         if (v == btnTambah) {
-            ();
+            intentIntegrator = new IntentIntegrator(this);
+            intentIntegrator.initiateScan();
         }
         if (v == btnTabel) {
             startActivity(new Intent(this, main_tampilanutama.class));
