@@ -62,14 +62,14 @@ public class MainActivityOut extends AppCompatActivity implements View.OnClickLi
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(MainActivity.this,"Menambahkan...","Tunggu...",false,false);
+                loading = ProgressDialog.show(MainActivityOut.this,"Menambahkan...","Tunggu...",false,false);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(MainActivity.this,s,Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivityOut.this,s,Toast.LENGTH_LONG).show();
             }
 
             @Override
