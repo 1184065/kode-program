@@ -13,24 +13,24 @@
         <Button
             android:id="@+id/btnTambah"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="80dp"
+            android:layout_height="220dp"
+            android:layout_margin="8dp"
             android:layout_marginTop="500dp"
             android:text="TAMBAH " />
 
         <Button
             android:id="@+id/btnOutput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="80dp"
+            android:layout_height="220dp"
+            android:layout_margin="8dp"
             android:layout_marginTop="500dp"
             android:text="OUTPUT" />
 
         <Button
             android:id="@+id/btnTabel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="80dp"
+            android:layout_height="220dp"
+            android:layout_margin="8dp"
             android:layout_marginBottom="500dp"
             android:text="TABEL" />
     </LinearLayout>
