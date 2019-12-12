@@ -47,16 +47,14 @@ public class main_tampilanutama extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         // inisialisasi IntentIntegrator(scanQR)
         if (v == btnTambah) {
-            intentIntegrator = new IntentIntegrator(this);
-            intentIntegrator.initiateScan();
+            startActivity(new Intent(this, MainActivity.class));
         }
 
-        if (v == btnTambah) {
-            intentIntegrator = new IntentIntegrator(this);
-            intentIntegrator.initiateScan();
-        }
+        if (v == btnOutpu) {
+            startActivity(new Intent(this, MainActivity.class));
+
         if (v == btnTabel) {
-            startActivity(new Intent(this, main_tampilanutama.class));
+            startActivity(new Intent(this, MainActivityTabel.class));
         }
     }
 }
