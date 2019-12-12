@@ -1,314 +1,136 @@
 package com.ulf.maria.qrcodescanner;
 
-/**
- * Created by user on 3/11/2018.
- */
-
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.v4.view.ViewPager.LayoutParams;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivityTabel extends Activity implements OnClickListener {
-    Pakaian pakaian = new Pakaian();
-    TableLayout tabelPakaian;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
-    Button buttonTambahPakaian;
-    ArrayList<Button> buttonEdit = new ArrayList<Button>();
-    ArrayList<Button> buttonDelete = new ArrayList<Button>();
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    JSONArray arrayPakaian;
+import java.util.HashMap;
+
+public class MainActivityOut extends AppCompatActivity implements View.OnClickListener {
+    private Button buttonScan;
+    private TextView textViewNama, textViewNomor, textViewJenis;
+    private Button buttonAdd;
+    private Button buttonTabel;
+
+    //qr code scanner object
+    private IntentIntegrator intentIntegrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tabellayout);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                    .permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        //pengenalan variabel
-        tabelPakaian = (TableLayout) findViewById(R.id.tablePakaian);
-        buttonTambahPakaian = (Button) findViewById(R.id.buttonTambahPakaian);
-        buttonTambahPakaian.setOnClickListener(this);
+        setContentView(R.layout.activity_main);
 
-        TableRow barisTabel = new TableRow(this);
-        barisTabel.setBackgroundColor(Color.CYAN);
+        // initialize object
+        buttonScan = (Button) findViewById(R.id.buttonScan);
+        textViewNomor = (TextView) findViewById(R.id.textViewNomor);
+        textViewNama = (TextView) findViewById(R.id.textViewNama);
+        textViewJenis = (TextView) findViewById(R.id.textViewJenis);
+        buttonAdd = (Button) findViewById(R.id.buttonAdd);
+        buttonTabel = (Button) findViewById(R.id.buttonTabel);
 
-        TextView viewHeaderId = new TextView(this);
-        TextView viewHeaderNomor = new TextView(this);
-        TextView viewHeaderNama = new TextView(this);
-        TextView viewHeaderJenis = new TextView(this);
+        //Setting listeners to button
+        buttonAdd.setOnClickListener(this);
+        buttonTabel.setOnClickListener(this);
 
-        viewHeaderId.setText("ID");
-        viewHeaderNomor.setText("Nomor");
-        viewHeaderNama.setText("Nama");
-        viewHeaderJenis.setText("Jenis");
-
-        viewHeaderId.setPadding(5, 1, 5, 1);
-        viewHeaderNomor.setPadding(5, 1, 5, 1);
-        viewHeaderNama.setPadding(5, 1, 5, 1);
-        viewHeaderJenis.setPadding(5, 1, 5, 1);
-
-
-        barisTabel.addView(viewHeaderId);
-        barisTabel.addView(viewHeaderNomor);
-        barisTabel.addView(viewHeaderNama);
-        barisTabel.addView(viewHeaderJenis);
-
-        tabelPakaian.addView(barisTabel, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT));
-
-        try {
-
-            arrayPakaian = new JSONArray(pakaian.tampilPakaian());
-
-            for (int i = 0; i < arrayPakaian.length(); i++) {
-                JSONObject jsonChildNode = arrayPakaian.getJSONObject(i);
-                String nomor = jsonChildNode.optString("nomor");
-                String nama = jsonChildNode.optString("nama");
-                String jenis = jsonChildNode.optString("jenis");
-
-                String id = jsonChildNode.optString("id");
-
-                System.out.println("Nomor :" + nomor);
-                System.out.println("Nama :" + nama);
-                System.out.println("Jenis :" + jenis);
-
-                System.out.println("ID :" + id);
-
-                barisTabel = new TableRow(this);
-
-                if (i % 2 == 0) {
-                    barisTabel.setBackgroundColor(Color.LTGRAY);
-                }
-
-                TextView viewId = new TextView(this);
-                viewId.setText(id);
-                viewId.setPadding(5, 1, 5, 1);
-                barisTabel.addView(viewId);
-
-                TextView viewNomor = new TextView(this);
-                viewNomor.setText(nomor);
-                viewNomor.setPadding(5, 1, 5, 1);
-                barisTabel.addView(viewNomor);
-
-                TextView viewNama = new TextView(this);
-                viewNama.setText(nama);
-                viewNama.setPadding(5, 1, 5, 1);
-                barisTabel.addView(viewNama);
-
-                TextView viewJenis = new TextView(this);
-                viewJenis.setText(jenis);
-                viewJenis.setPadding(5, 1, 5, 1);
-                barisTabel.addView(viewJenis);
-
-                buttonEdit.add(i, new Button(this));
-                buttonEdit.get(i).setId(Integer.parseInt(id));
-                buttonEdit.get(i).setTag("Edit");
-                buttonEdit.get(i).setText("Edit");
-                buttonEdit.get(i).setOnClickListener(this);
-                barisTabel.addView(buttonEdit.get(i));
-
-                buttonDelete.add(i, new Button(this));
-                buttonDelete.get(i).setId(Integer.parseInt(id));
-                buttonDelete.get(i).setTag("Delete");
-                buttonDelete.get(i).setText("Delete");
-                buttonDelete.get(i).setOnClickListener(this);
-                barisTabel.addView(buttonDelete.get(i));
-
-                tabelPakaian.addView(barisTabel, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                        LayoutParams.MATCH_PARENT));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        // attaching onclickListener
+        buttonScan.setOnClickListener(this);
     }
+    //Dibawah ini merupakan perintah untuk Menambahkan Pegawai (CREATE)
+    private void addEmployee(){
 
-    public void onClick(View view) {
+        final String nomor = textViewNomor.getText().toString().trim();
+        final String nama = textViewNama.getText().toString().trim();
+        final String jenis = textViewJenis.getText().toString().trim();
 
-        if (view.getId() == R.id.buttonTambahPakaian) {
-            // Toast.makeText(MainActivity.this, "Button Tambah Data",
-            // Toast.LENGTH_SHORT).show();
+        class AddEmployee extends AsyncTask<Void,Void,String>{
 
-            tambahPakaian();
+            ProgressDialog loading;
 
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(MainActivity.this,"Menambahkan...","Tunggu...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(MainActivity.this,s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Void... v) {
+                HashMap<String,String> params = new HashMap<>();
+                params.put(konfigurasi.KEY_EMP_NOMOR,nomor);
+                params.put(konfigurasi.KEY_EMP_NAMA,nama);
+                params.put(konfigurasi.KEY_EMP_JENIS,jenis);
+
+                RequestHandler rh = new RequestHandler();
+                String res = rh.sendPostRequest(konfigurasi.URL_ADD, params);
+                return res;
+            }
+        }
+
+        AddEmployee ae = new AddEmployee();
+        ae.execute();
+    }
+    // Mendapatkan hasil scan
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                Toast.makeText(this, "Hasil tidak ditemukan", Toast.LENGTH_SHORT).show();
+            } else {
+                // jika qrcode berisi data
+                try {
+                    // converting the data json
+                    JSONObject object = new JSONObject(result.getContents());
+                    // atur nilai ke textviews
+                    textViewNomor.setText(object.getString("nomor"));
+                    textViewNama.setText(object.getString("nama"));
+                    textViewJenis.setText(object.getString("jenis"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    // jika format encoded tidak sesuai maka hasil
+                    // ditampilkan ke toast
+                    Toast.makeText(this, result.getContents(), Toast.LENGTH_SHORT).show();
+                }
+            }
         } else {
-            /*
-             * Melakukan pengecekan pada data array, agar sesuai dengan index
-             * masing-masing button
-             */
-            for (int i = 0; i < buttonEdit.size(); i++) {
-
-                /* jika yang diklik adalah button edit */
-                if (view.getId() == buttonEdit.get(i).getId() && view.getTag().toString().trim().equals("Edit")) {
-                    // Toast.makeText(MainActivity.this, "Edit : " +
-                    // buttonEdit.get(i).getId(), Toast.LENGTH_SHORT).show();
-                    int id = buttonEdit.get(i).getId();
-                    getDataByID(id);
-
-                } /* jika yang diklik adalah button delete */
-                else if (view.getId() == buttonDelete.get(i).getId() && view.getTag().toString().trim().equals("Delete")) {
-                    // Toast.makeText(MainActivity.this, "Delete : " +
-                    // buttonDelete.get(i).getId(), Toast.LENGTH_SHORT).show();
-                    int id = buttonDelete.get(i).getId();
-                    deletePakaian(id);
-
-                }
-            }
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    public void deletePakaian(int id) {
-        pakaian.deletePakaian(id);
-
-        /* restart acrtivity */
-        finish();
-        startActivity(getIntent());
-
-    }
-
-    public void getDataByID(int id) {
-
-        String nomorEdit = null, namaEdit = null, jenisEdit = null;
-        JSONArray arrayPersonal;
-
-        try {
-
-            arrayPersonal = new JSONArray(pakaian.getPakaianById(id));
-
-            for (int i = 0; i < arrayPersonal.length(); i++) {
-                JSONObject jsonChildNode = arrayPersonal.getJSONObject(i);
-                nomorEdit = jsonChildNode.optString("nomor");
-                namaEdit = jsonChildNode.optString("nama");
-                jenisEdit = jsonChildNode.optString("jenis");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+    @Override
+    public void onClick(View v) {
+        // inisialisasi IntentIntegrator(scanQR)
+        if (v == buttonScan) {
+            intentIntegrator = new IntentIntegrator(this);
+            intentIntegrator.initiateScan();
         }
 
-        LinearLayout layoutInput = new LinearLayout(this);
-        layoutInput.setOrientation(LinearLayout.VERTICAL);
-
-        // buat id tersembunyi di alertbuilder
-        final TextView viewId = new TextView(this);
-        viewId.setText(String.valueOf(id));
-        viewId.setTextColor(Color.TRANSPARENT);
-        layoutInput.addView(viewId);
-
-        final EditText editNomor = new EditText(this);
-        editNomor.setText(nomorEdit);
-        layoutInput.addView(editNomor);
-
-        final EditText editNama = new EditText(this);
-        editNama.setText(namaEdit);
-        layoutInput.addView(editNama);
-
-        final EditText editJenis = new EditText(this);
-        editJenis.setText(jenisEdit);
-        layoutInput.addView(editJenis);
-
-        AlertDialog.Builder builderEditPakaian = new AlertDialog.Builder(this);
-        builderEditPakaian.setIcon(R.drawable.batagrams);
-        builderEditPakaian.setTitle("Update Data");
-        builderEditPakaian.setView(layoutInput);
-        builderEditPakaian.setPositiveButton("Update", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String nomor = editNomor.getText().toString();
-                String nama = editNama.getText().toString();
-                String jenis = editJenis.getText().toString();
-
-                System.out.println("Nomor : " + nomor + " Nama : " + nama+ " Jenis : " + jenis);
-
-                String laporan = pakaian.updatePakaian(viewId.getText().toString(), editNomor.getText().toString(),
-                        editNama.getText().toString(),editJenis.getText().toString());
-
-                Toast.makeText(MainActivityTabel.this, laporan, Toast.LENGTH_SHORT).show();
-
-                /* restart acrtivity */
-                finish();
-                startActivity(getIntent());
-            }
-
-        });
-
-        builderEditPakaian.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builderEditPakaian.show();
-
-    }
-
-    public void tambahPakaian() {
-        /* layout akan ditampilkan pada AlertDialog */
-        LinearLayout layoutInput = new LinearLayout(this);
-        layoutInput.setOrientation(LinearLayout.VERTICAL);
-
-        final EditText editNomor = new EditText(this);
-        editNomor.setHint("Nomor");
-        layoutInput.addView(editNomor);
-
-        final EditText editNama = new EditText(this);
-        editNama.setHint("Nama");
-        layoutInput.addView(editNama);
-
-        final EditText editJenis = new EditText(this);
-        editJenis.setHint("Jenis");
-        layoutInput.addView(editJenis);
-
-        AlertDialog.Builder builderInsertPakaian = new AlertDialog.Builder(this);
-        builderInsertPakaian.setIcon(R.drawable.batagrams);
-        builderInsertPakaian.setTitle("Insert Data");
-        builderInsertPakaian.setView(layoutInput);
-        builderInsertPakaian.setPositiveButton("Insert", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String nomor = editNomor.getText().toString();
-                String nama = editNama.getText().toString();
-                String jenis = editJenis.getText().toString();
-
-                System.out.println("Nomor : " + nomor + " Nama : " + nama+ " Jenis : " + jenis);
-
-                String laporan = pakaian.inserPakaian(nomor, nama, jenis);
-
-                Toast.makeText(MainActivityTabel.this, laporan, Toast.LENGTH_SHORT).show();
-
-                /* restart acrtivity */
-                finish();
-                startActivity(getIntent());
-            }
-
-        });
-
-        builderInsertPakaian.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builderInsertPakaian.show();
+        if (v == buttonAdd) {
+            addEmployee();
+        }
+        if (v == buttonTabel) {
+            startActivity(new Intent(this, MainActivityTabel.class));
+        }
     }
 }
