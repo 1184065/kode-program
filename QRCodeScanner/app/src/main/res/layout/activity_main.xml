@@ -13,6 +13,8 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp" tools:context=".MainActivity">
 
+    import android.net.Uri;
+
     //test push menambahkan konten
     //Merubah hardcode dengan membuat string.xml
     <TextView
@@ -51,15 +53,19 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SAVE"
+        android:text="Barang Masuk"
         android:id="@+id/buttonAdd" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Barang Keluar"
+        android:id="@+id/buttonOut" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tabel"
+        android:text="Informasi Stock Barang"
         android:id="@+id/buttonTabel" />
-
 </LinearLayout>
 
 <Button

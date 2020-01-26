@@ -1,8 +1,5 @@
 package com.ulf.maria.qrcodescanner;
 
-/**
- * Created by user on 2/12/2018.
- */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -22,6 +19,7 @@ public class RequestHandler {
     //Metode ini mengambil 2 Argumen
     //Metode Pertama adalah URL dari Skrip yang digunakan untuk mengirimkan permintaan
     //Yang lainnya adalah HashMap dengan nilai pasangan nama yang berisi data yang akan dikirim dengan permintaan
+
     public String sendPostRequest(String requestURL,
                                   HashMap<String, String> postDataParams) {
         //Membuat URL

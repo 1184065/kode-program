@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 
+import android.net.Uri;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonScan;
     private TextView textViewNama, textViewNomor, textViewJenis;
     private Button buttonAdd;
+    private Button buttonOut;
     private Button buttonTabel;
 
     //qr code scanner object
@@ -39,23 +42,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewNama = (TextView) findViewById(R.id.textViewNama);
         textViewJenis = (TextView) findViewById(R.id.textViewJenis);
         buttonAdd = (Button) findViewById(R.id.buttonAdd);
+        buttonOut = (Button) findViewById(R.id.buttonOut);
         buttonTabel = (Button) findViewById(R.id.buttonTabel);
 
         //Setting listeners to button
         buttonAdd.setOnClickListener(this);
+        buttonOut.setOnClickListener(this);
         buttonTabel.setOnClickListener(this);
 
         // attaching onclickListener
         buttonScan.setOnClickListener(this);
     }
     //Dibawah ini merupakan perintah untuk Menambahkan Pegawai (CREATE)
-    private void addEmployee(){
+    private void addItem(){
 
         final String nomor = textViewNomor.getText().toString().trim();
         final String nama = textViewNama.getText().toString().trim();
         final String jenis = textViewJenis.getText().toString().trim();
 
-        class AddEmployee extends AsyncTask<Void,Void,String>{
+        class AddItem extends AsyncTask<Void,Void,String>{
 
             ProgressDialog loading;
 
@@ -85,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        AddEmployee ae = new AddEmployee();
+        AddItem ae = new AddItem();
         ae.execute();
     }
     // Mendapatkan hasil scan
@@ -127,10 +132,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (v == buttonAdd) {
-            addEmployee();
+            addItem();
         }
+
+        if (v == buttonOut) {
+            outEmployee();
+        }
+
         if (v == buttonTabel) {
-            startActivity(new Intent(this, MainActivityTabel.class));
+            Intent Getintent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://projectpoltekpos.000webhostapp.com/"));
+            startActivity(Getintent);
         }
     }
 }

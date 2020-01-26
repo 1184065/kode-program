@@ -1,8 +1,5 @@
 package com.ulf.maria.qrcodescanner;
 
-/**
- * Created by user on 2/14/2018.
- */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

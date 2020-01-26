@@ -1,9 +1,5 @@
 package com.ulf.maria.qrcodescanner;
 
-/**
- * Created by user on 3/11/2018.
- */
-
 public class Pakaian extends Koneksi {
     String URL = "http://192.168.43.81/webqrcodescan/server.php";
     String url = "";
