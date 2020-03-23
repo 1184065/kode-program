@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 params.put(konfigurasi.KEY_EMP_JENIS,jenis);
 
                 RequestHandler rh = new RequestHandler();
-                String res = rh.sendPostRequest(konfigurasi.URL_ADD, params);
+                String res = rh.sendPostRequest(konfigurasi.URL_DEL, params);
                 return res;
             }
         }
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (v == buttonOut) {
-            addItem();
+            addOut();
         }
 
         if (v == buttonTabel) {

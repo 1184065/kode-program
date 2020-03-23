@@ -1,12 +1,10 @@
 package com.ulf.maria.qrcodescanner;
 
 public class konfigurasi {
-    //Dibawah ini merupakan Pengalamatan dimana Lokasi Skrip CRUD PHP disimpan
-    //membuat localhost maka alamatnya tertuju ke IP komputer
-    //dimana File PHP tersebut berada
-    //PENTING! JANGAN LUPA GANTI IP SESUAI DENGAN IP KOMPUTER DIMANA DATA PHP BERADA
+
     //ini adalah tujuan request
     public static final String URL_ADD="https://projectpoltekpos.000webhostapp.com/android/tambah.php";
+    public static final String URL_DEL = "https://projectpoltekpos.000webhostapp.com/android/tambah2.php";
     public static final String URL_GET_ALL = "https://projectpoltekpos.000webhostapp.com/android/tampilSemua.php";
     public static final String URL_GET_EMP = "https://projectpoltekpos.000webhostapp.com/android/tampilPgw.php?id=";
     public static final String URL_UPDATE_EMP = "https://projectpoltekpos.000webhostapp.com/android/updatePgw.php";
@@ -25,7 +23,7 @@ public class konfigurasi {
     public static final String TAG_NAMA = "nama";
     public static final String TAG_JENIS = "jenis";
 
-    //ID karyawan
+    //ID
     //emp itu singkatan dari Employee
     public static final String EMP_ID = "emp_id";
 }
