@@ -52,6 +52,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonScan.setOnClickListener(this);
     }
     //Dibawah ini merupakan perintah untuk Menambahkan Pegawai (CREATE)
+    public void reset(){
+        textViewNomor.setText("");
+        textViewNama.setText("");
+        textViewJenis.setText("");
+    }
+
     private void addItem(){
 
         final String nomor = textViewNomor.getText().toString().trim();
@@ -73,7 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(MainActivity.this,s,Toast.LENGTH_LONG).show();
+                reset();
             }
+
 
             @Override
             protected String doInBackground(Void... v) {
