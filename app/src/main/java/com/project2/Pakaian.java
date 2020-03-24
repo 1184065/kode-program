@@ -1,4 +1,4 @@
-package com.ulf.maria.qrcodescanner;
+package com.project2;
 
 public class Pakaian extends Koneksi {
     String URL = "http://192.168.43.81/webqrcodescan/server.php";

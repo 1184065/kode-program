@@ -1,4 +1,4 @@
-package com.ulf.maria.qrcodescanner;
+package com.project2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.project2.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(MainActivity.this,s,Toast.LENGTH_LONG).show();
+                reset();
             }
 
             @Override

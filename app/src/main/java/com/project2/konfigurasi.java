@@ -1,4 +1,4 @@
-package com.ulf.maria.qrcodescanner;
+package com.project2;
 
 public class konfigurasi {
 

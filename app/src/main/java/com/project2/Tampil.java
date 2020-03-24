@@ -1,4 +1,4 @@
-package com.ulf.maria.qrcodescanner;
+package com.project2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.project2.R;
 
 public class Tampil extends AppCompatActivity {
 
